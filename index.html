@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+overflow:hidden;
+background:linear-gradient(-45deg,#fff0e5,#f7e8ff,#e7f2ff,#ffe4f0);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* INTRO SCREEN */
+
+#introScreen{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1.2s;
+}
+
+#introScreen h1{
+color:white;
+font-size:3rem;
+text-align:center;
+text-shadow:0 0 20px #ff8ac2;
+margin-bottom:25px;
+}
+
+#startBtn{
+padding:18px 45px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-size:1.2rem;
+font-weight:600;
+background:linear-gradient(135deg,#ff75ad,#a77bff);
+color:white;
+box-shadow:0 0 25px rgba(255,118,173,.6);
+transition:.3s;
+}
+
+#startBtn:hover{
+transform:scale(1.08);
+}
+
+#birthdayPage{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+}
+
+/* HEARTS */
+
+.hearts span{
+position:absolute;
+color:#ff8fb8;
+animation:floatHeart linear infinite;
+}
+
+@keyframes floatHeart{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* SPARKLES */
+
+.sparkles span{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+50%{
+opacity:.2;
+transform:scale(.5);
+}
+}
+
+/* CARD */
+
+.card{
+width:90%;
+max-width:700px;
+padding:50px;
+text-align:center;
+
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(20px);
+
+border-radius:35px;
+
+border:1px solid rgba(255,255,255,.4);
+
+box-shadow:0 8px 32px rgba(0,0,0,.08);
+}
+
+h1{
+font-size:3rem;
+color:#8a8dff;
+margin-bottom:20px;
+}
+
+.card p{
+color:#666;
+font-size:1.2rem;
+line-height:1.8;
+}
+
+.btn{
+margin-top:30px;
+padding:18px 40px;
+border:none;
+border-radius:60px;
+cursor:pointer;
+
+background:linear-gradient(
+135deg,
+#ff75ad,
+#a77bff
+);
+
+color:white;
+font-size:1.1rem;
+font-weight:600;
+
+transition:.4s;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+}
+
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.5);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+opacity:0;
+visibility:hidden;
+transition:.5s;
+}
+
+.modal.show{
+opacity:1;
+visibility:visible;
+}
+
+.modal-content{
+width:90%;
+max-width:850px;
+
+padding:40px;
+
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(20px);
+
+border-radius:30px;
+
+text-align:center;
+
+transform:scale(.7);
+transition:.5s;
+}
+
+.modal.show .modal-content{
+transform:scale(1);
+}
+
+.glow{
+font-size:3.2rem;
+color:white;
+
+text-shadow:
+0 0 10px #ff8ac2,
+0 0 20px #ff8ac2,
+0 0 40px #ff8ac2;
+}
+
+.message{
+margin-top:25px;
+font-size:1.2rem;
+color:#444;
+}
+
+/* IMPROVED CAKE */
+
+.cake{
+position:relative;
+width:240px;
+margin:40px auto;
+}
+
+.candle{
+width:18px;
+height:70px;
+
+background:
+repeating-linear-gradient(
+45deg,
+white 0 6px,
+#ff7fb3 6px 12px
+);
+
+margin:auto;
+position:relative;
+}
+
+.flame{
+position:absolute;
+top:-28px;
+left:-2px;
+
+width:22px;
+height:30px;
+
+background:
+radial-gradient(circle,#fff 0%,#ffd700 60%,orange 100%);
+
+border-radius:50%;
+
+box-shadow:
+0 0 15px gold,
+0 0 30px orange;
+
+animation:flicker .15s infinite alternate;
+}
+
+@keyframes flicker{
+from{
+transform:rotate(-4deg);
+}
+to{
+transform:rotate(4deg) scale(1.08);
+}
+}
+
+.cake-top{
+width:140px;
+height:50px;
+margin:auto;
+background:linear-gradient(to right,#ffe0ec,#fff0f6,#ffe0ec);
+border-radius:15px;
+}
+
+.icing{
+width:150px;
+height:15px;
+margin:auto;
+background:white;
+border-radius:20px;
+margin-top:-5px;
+position:relative;
+z-index:2;
+}
+
+.cake-middle{
+width:180px;
+height:60px;
+margin:auto;
+background:linear-gradient(to right,#ffc1da,#ffd1e6,#ffc1da);
+border-radius:15px;
+margin-top:-5px;
+}
+
+.cake-bottom{
+width:220px;
+height:70px;
+margin:auto;
+background:linear-gradient(to right,#ff9ac4,#ffb6d5,#ff9ac4);
+border-radius:15px;
+margin-top:-5px;
+}
+
+.plate{
+width:260px;
+height:20px;
+margin:auto;
+margin-top:-5px;
+background:#eee;
+border-radius:50%;
+}
+
+/* CLOSE BUTTON */
+
+.close{
+margin-top:25px;
+padding:12px 30px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:#ff6fa8;
+color:white;
+}
+
+/* BALLOONS */
+
+.balloon{
+position:absolute;
+bottom:-150px;
+font-size:60px;
+animation:fly linear infinite;
+}
+
+@keyframes fly{
+to{
+transform:translateY(-130vh);
+}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+animation:confettiFall linear infinite;
+}
+
+@keyframes confettiFall{
+from{
+transform:translateY(-100px) rotate(0);
+}
+to{
+transform:translateY(120vh) rotate(720deg);
+}
+}
+
+@media(max-width:768px){
+
+h1{
+font-size:2rem;
+}
+
+.glow{
+font-size:2rem;
+}
+
+#introScreen h1{
+font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+
+<div id="introScreen">
+
+<h1>🎁 A Special Surprise Awaits 🎁</h1>
+
+<button id="startBtn">
+Open Gift
+</button>
+
+</div>
+
+<!-- MAIN PAGE -->
+
+<div id="birthdayPage">
+
+<div class="hearts"></div>
+<div class="sparkles"></div>
+
+<div class="card">
+
+<h1>🎉 Happy Birthday! 🎂</h1>
+
+<p>
+
+Wishing you a very Happy Birthday! 🎉
+May your day be filled with happiness, laughter, and unforgettable memories. I hope this year brings you success, good health, new opportunities, and countless reasons to smile. Enjoy your special day and all the wonderful moments that come with it.
+
+Happy Birthday! 🎂❤️
+<br><br>
+From Mathew Cuachon ❤️
+</p>
+
+<button class="btn" onclick="showSurprise()">
+🎁 Click Here For Surprise
+</button>
+
+</div>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<h2 class="glow">
+🎉 HAPPY BIRTHDAY! 🎂
+</h2>
+
+<div class="cake">
+
+<div class="candle">
+<div class="flame"></div>
+</div>
+
+<div class="cake-top"></div>
+<div class="icing"></div>
+<div class="cake-middle"></div>
+<div class="cake-bottom"></div>
+
+<div class="plate"></div>
+
+</div>
+
+<p class="message">
+May all your dreams come true and may your year be filled with joy, success, happiness, and unforgettable memories! 🎉✨
+</p>
+
+<button class="close" onclick="closeModal()">
+Close
+</button>
+
+</div>
+
+</div>
+
+<audio id="birthdaySong">
+<source src="happybirthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// OPEN GIFT
+
+document.getElementById("startBtn").onclick=function(){
+
+document.getElementById("introScreen").style.opacity="0";
+
+setTimeout(()=>{
+
+document.getElementById("introScreen").style.display="none";
+
+document.getElementById("birthdayPage").style.display="flex";
+
+},1200);
+
+};
+
+// HEARTS
+
+const hearts=document.querySelector(".hearts");
+
+for(let i=0;i<30;i++){
+
+let heart=document.createElement("span");
+
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=10+Math.random()*25+"px";
+heart.style.animationDuration=5+Math.random()*10+"s";
+
+hearts.appendChild(heart);
+
+}
+
+// SPARKLES
+
+const sparkles=document.querySelector(".sparkles");
+
+for(let i=0;i<60;i++){
+
+let s=document.createElement("span");
+
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+s.style.animationDelay=Math.random()*3+"s";
+
+sparkles.appendChild(s);
+
+}
+
+function showSurprise(){
+
+document.getElementById("modal")
+.classList.add("show");
+
+document.getElementById("birthdaySong")
+.play();
+
+launchBalloons();
+launchConfetti();
+
+}
+
+function closeModal(){
+
+document.getElementById("modal")
+.classList.remove("show");
+
+}
+
+function launchBalloons(){
+
+for(let i=0;i<18;i++){
+
+let balloon=document.createElement("div");
+
+balloon.className="balloon";
+
+balloon.innerHTML="🎈";
+
+balloon.style.left=Math.random()*100+"vw";
+balloon.style.animationDuration=5+Math.random()*5+"s";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.remove();
+},10000);
+
+}
+
+}
+
+function launchConfetti(){
+
+const colors=[
+"#ff6fa8",
+"#ffd166",
+"#7bdff2",
+"#cdb4ff",
+"#90f1ef"
+];
+
+for(let i=0;i<150;i++){
+
+let conf=document.createElement("div");
+
+conf.className="confetti";
+
+conf.style.left=Math.random()*100+"vw";
+
+conf.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+conf.style.animationDuration=
+2+Math.random()*3+"s";
+
+document.body.appendChild(conf);
+
+setTimeout(()=>{
+conf.remove();
+},5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
